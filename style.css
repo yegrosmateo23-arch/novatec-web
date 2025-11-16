@@ -1,0 +1,682 @@
+/* ======== VARIABLES GLOBALES ======== */
+:root {
+    --color-fondo-oscuro: #1A1A1A; 
+    --color-texto-claro: #E0E0E0; 
+    --color-principal: #007bff; 
+    --color-acento: #00CC7A; 
+    --color-bordes: #333333; 
+    --color-tarjeta: #222222; 
+
+    --font-heading: 'Poppins', sans-serif; 
+    --font-body: 'Montserrat', sans-serif; 
+
+    --header-height: 80px;
+}
+
+/* ======== RESET BÁSICO Y GLOBALES ======== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-texto-claro);
+    line-height: 1.7;
+    overflow-x: hidden; 
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-principal);
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--color-acento);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; 
+}
+
+svg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+#servicios {
+    padding-bottom: 3rem;
+}
+#reparaciones {
+    padding-top: 3rem;
+}
+
+
+.section__title {
+    font-family: var(--font-heading);
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #ffffff; 
+    position: relative;
+    padding-bottom: 1rem;
+}
+.section__title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-principal);
+    border-radius: 2px;
+}
+
+.section__subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--color-texto-claro);
+    margin-bottom: 3rem;
+}
+
+/* ======== BOTONES ======== */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.btn svg { 
+    width: 1.1em; 
+    height: 1.1em;
+    margin-right: 0.5rem;
+    fill: currentColor; 
+}
+
+.btn--primary {
+    background-color: var(--color-acento); 
+    color: var(--color-fondo-oscuro); 
+    border: 2px solid var(--color-acento);
+}
+.btn--primary:hover {
+    background-color: transparent;
+    color: var(--color-acento);
+}
+
+.btn--secondary {
+    background-color: transparent;
+    color: var(--color-principal);
+    border: 2px solid var(--color-principal);
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+}
+.btn--secondary:hover {
+    background-color: var(--color-principal);
+    color: var(--color-fondo-oscuro);
+}
+
+.highlight {
+    color: var(--color-principal);
+}
+
+
+/* ======== HEADER (NAV) ======== */
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: var(--color-fondo-oscuro);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    padding: 0.5rem 0;
+}
+.header-scrolled {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    background-color: rgba(26, 26, 26, 0.95); 
+}
+
+.nav {
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__logo .logo-img {
+    height: 50px; 
+    width: auto;
+    object-fit: contain; 
+}
+
+.nav__right {
+    display: flex;
+    align-items: center;
+}
+
+.nav__menu {
+    position: fixed;
+    top: 0;
+    right: -100%; 
+    width: 70%;
+    height: 100vh;
+    background-color: var(--color-fondo-oscuro);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    padding: calc(var(--header-height) + 1.5rem) 1.5rem 0;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.nav__menu.show-menu {
+    right: 0; 
+}
+
+.nav__item {
+    text-align: center;
+}
+
+.nav__link {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-texto-claro);
+    font-size: 1.2rem;
+    display: block;
+    padding: 0.75rem 0;
+}
+.nav__link:hover {
+    color: var(--color-principal);
+}
+
+.nav__menu .btn--primary {
+    display: block;
+    margin-top: 1rem;
+}
+
+.nav__social {
+    display: none; 
+    gap: 1rem;
+    margin-left: 1.5rem; 
+}
+.nav__social .social-icon {
+    color: var(--color-texto-claro);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.nav__social .social-icon svg {
+    width: 1.3rem; 
+    height: 1.3rem;
+    fill: currentColor;
+}
+.nav__social .social-icon:hover {
+    color: var(--color-principal);
+    transform: translateY(-2px);
+}
+
+
+.nav__toggle {
+    color: var(--color-texto-claro);
+    cursor: pointer;
+    z-index: 1001; 
+    width: 1.8rem; 
+    height: 1.8rem;
+    margin-left: 1rem; 
+}
+.nav__toggle svg {
+    width: 100%;
+    height: 100%;
+}
+.nav__toggle .icon-close {
+    display: none; 
+}
+.nav__toggle.toggled .icon-close {
+    display: block;
+}
+.nav__toggle.toggled .icon-menu {
+    display: none;
+}
+
+
+/* ======== HERO (INICIO) ======== */
+.hero {
+    min-height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--color-fondo-oscuro);
+    background-image: url('https://via.placeholder.com/1920x1080/1a1a1a/007bff?text=Fondo+NovaTec'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    padding-top: var(--header-height);
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+}
+
+.hero__container {
+    position: relative;
+    z-index: 10;
+}
+
+.hero__title {
+    font-family: var(--font-heading);
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    line-height: 1.1;
+}
+
+.hero__subtitle {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    color: var(--color-texto-claro);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ======== SERVICIOS (VISTA GENERAL) ======== */
+.services__grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.service-card {
+    background-color: var(--color-tarjeta); 
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--color-bordes);
+}
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+.service-card__icon {
+    margin-bottom: 1.5rem;
+}
+.service-card__icon svg {
+    width: 3.5rem;
+    height: 3.5rem;
+    color: var(--color-principal);
+}
+
+.service-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.service-card__description {
+    font-size: 1rem;
+    color: var(--color-texto-claro);
+}
+
+/* ======== NUEVA SECCIÓN: ÉNFASIS (REPARACIONES) ======== */
+.feature-section {
+    background-color: var(--color-tarjeta);
+    border-radius: 12px;
+    padding: 3rem;
+    border: 1px solid var(--color-bordes);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.feature__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+}
+
+.feature__image img {
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.feature__title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.feature__description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.feature__list {
+    margin-bottom: 2.5rem;
+}
+
+.feature__list li {
+    display: flex;
+    /* ¡¡¡ARREGLO #1 AQUI!!! */
+    align-items: flex-start; /* Cambiado de 'center' a 'flex-start' */
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+.feature__list li svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--color-acento);
+    margin-right: 1rem;
+    flex-shrink: 0; 
+}
+
+/* ======== PORTAFOLIO ======== */
+.portfolio__grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.portfolio-card {
+    background-color: var(--color-tarjeta);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--color-bordes);
+}
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+}
+
+.portfolio-card__img {
+    width: 100%;
+    height: 250px; 
+    object-fit: cover; 
+    transition: transform 0.3s ease;
+}
+.portfolio-card:hover .portfolio-card__img {
+    transform: scale(1.05);
+}
+
+.portfolio-card__body {
+    padding: 1.8rem;
+}
+
+.portfolio-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: #ffffff;
+}
+
+.portfolio-card__description {
+    margin-bottom: 1.5rem;
+    color: var(--color-texto-claro);
+}
+
+/* ======== CONTACTO (FORMULARIO) ======== */
+.contact__whatsapp {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    background-color: var(--color-tarjeta);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-bordes);
+}
+.contact__whatsapp a {
+    font-weight: 600;
+    color: var(--color-acento);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.contact__whatsapp a svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: currentColor;
+}
+
+.contact__form {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--color-tarjeta);
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    border: 1px solid var(--color-bordes);
+}
+
+.form-group {
+    margin-bottom: 1.8rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.7rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--color-bordes);
+    border-radius: 8px;
+    background-color: #2a2a2a; 
+    color: var(--color-texto-claro);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--color-principal);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+.form-group textarea {
+    resize: vertical; 
+}
+
+
+/* ======== FOOTER ======== */
+.footer {
+    background-color: #111111; 
+    color: var(--color-texto-claro);
+    padding: 3rem 0;
+    text-align: center;
+    margin-top: 6rem;
+}
+
+.footer__container p {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+.footer__container p svg {
+    width: 1rem;
+    height: 1rem;
+    color: #e74c3c; 
+}
+
+.footer__social {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-icon {
+    color: var(--color-texto-claro);
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+.social-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor; 
+}
+.social-icon:hover {
+    color: var(--color-principal);
+    transform: translateY(-3px);
+}
+
+/* ======== BOTÓN FLOTANTE WHATSAPP ======== */
+.whatsapp-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366; 
+    color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    z-index: 998;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.whatsapp-fab svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: currentColor;
+}
+.whatsapp-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+}
+
+
+/* ======== RESPONSIVE (Media Queries) ======== */
+@media screen and (max-width: 768px) {
+    .nav__toggle {
+        display: block; 
+    }
+
+    .section__title {
+        font-size: 2.2rem;
+    }
+    .hero__title {
+        font-size: 2.8rem;
+    }
+    .hero__subtitle {
+        font-size: 1.1rem;
+    }
+
+    .feature__grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .feature__image {
+        order: 1;
+    }
+    .feature__content {
+        order: 2;
+        text-align: center;
+    }
+    /* Añadido para que la lista se vea bien centrada pero alineada a la izquierda */
+    .feature__list {
+        display: inline-block; /* Hace que la lista no ocupe el 100% */
+        text-align: left; /* Alinea el texto a la izquierda */
+    }
+    .feature__list li {
+        /* ¡¡¡ARREGLO #2 AQUI!!! */
+        justify-content: flex-start; /* Cambiado de 'center' a 'flex-start' */
+    }
+    .feature__title {
+        font-size: 2rem;
+    }
+
+    .contact__form {
+        padding: 2rem;
+    }
+
+    .whatsapp-fab {
+        bottom: 1rem;
+        right: 1rem;
+        width: 50px;
+        height: 50px;
+    }
+    .whatsapp-fab svg {
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .nav__right {
+        /* Contenedor de la derecha */
+    }
+    .nav__toggle {
+        display: none; 
+    }
+    .nav__menu {
+        position: static; 
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 0;
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+    .nav__menu .btn--primary {
+        margin-top: 0;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+    .nav__social {
+        display: flex;
+        align-items: center;
+    }
+}
